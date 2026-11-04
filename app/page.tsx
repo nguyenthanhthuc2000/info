@@ -114,11 +114,6 @@ export default function Home() {
                 className="h-full w-full rounded-full object-cover"
               />
             </div>
-            <Image
-              src={youtubeAvatar}
-              alt="Logo NTT"
-              className="absolute -bottom-1 -left-3 h-12 w-12 rounded-full border-4 border-background bg-background"
-            />
             <span className="absolute -bottom-1 -right-1 flex h-9 w-9 items-center justify-center rounded-full border-4 border-background bg-emerald-500 text-stone-950">
               <svg viewBox="0 0 16 16" className="h-4 w-4" aria-hidden>
                 <path
