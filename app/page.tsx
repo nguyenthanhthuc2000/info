@@ -16,13 +16,6 @@ type Contact = {
 
 const contacts: Contact[] = [
   {
-    label: "NickDaoQuan.Com",
-    value: "Shop Nick NRO",
-    href: "https://nickdaoquan.com",
-    action: "Ghé shop",
-    avatar: youtubeAvatar,
-  },
-  {
     label: "Facebook",
     value: "Facebook cá nhân",
     href: "https://www.facebook.com/nguyenthanhthuc.2k/",
@@ -109,7 +102,7 @@ export default function Home() {
         className="pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-amber-500/15 blur-3xl"
       />
 
-      <div className="relative mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24">
+      <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
         {/* Hero */}
         <section className="flex flex-col items-center text-center">
           <div className="relative">
@@ -160,7 +153,7 @@ export default function Home() {
         </section>
 
         {/* Liên hệ */}
-        <section className="mt-16 grid gap-3 md:grid-cols-3">
+        <section className="mt-16 mx-auto grid max-w-xl gap-3 xl:max-w-none xl:grid-cols-3">
           {contacts.map((c) => (
             <div
               key={c.label}
