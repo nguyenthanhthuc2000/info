@@ -9,7 +9,7 @@ const beVietnam = Be_Vietnam_Pro({
 });
 
 export const metadata: Metadata = {
-  title: "Nguyễn Thành Thức — Chủ shop NickDaoQuan.Com",
+  title: "Nguyễn Thành Thức",
   description:
     "Thông tin uy tín của Nguyễn Thành Thức: chủ shop NickDaoQuan.Com, admin các nhóm và shop Ngọc Rồng Online.",
 };
