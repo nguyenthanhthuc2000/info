@@ -1,69 +1,262 @@
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
+import { CopyButton } from "./copy-button";
+import catAvatar from "../public/avatars/cat-meme.png";
+import youtubeAvatar from "../public/avatars/youtube.jpg";
+
+const PHONE = "0389946423";
+
+type Contact = {
+  label: string;
+  value: string;
+  href: string;
+  avatar?: StaticImageData;
+  copy?: string;
+};
+
+const contacts: Contact[] = [
+  {
+    label: "Facebook cá nhân",
+    value: "nguyenthanhthuc.2k",
+    href: "https://www.facebook.com/nguyenthanhthuc.2k/",
+    avatar: catAvatar,
+  },
+  {
+    label: "Zalo / SĐT",
+    value: "0389.946.423",
+    href: `https://zalo.me/${PHONE}`,
+    copy: PHONE,
+  },
+  {
+    label: "Kênh YouTube",
+    value: "@shop_nickdaoquan_com",
+    href: "https://www.youtube.com/@shop_nickdaoquan_com",
+    avatar: youtubeAvatar,
+  },
+];
+
+const roles = [
+  {
+    title: "Admin Group All Server",
+    links: [
+      {
+        name: "Group Thịnh Nguyễn",
+        action: "Check bài ghim",
+        href: "https://www.facebook.com/share/p/1XGiFVqoFG/",
+      },
+    ],
+  },
+  {
+    title: "Admin Shophhp.net",
+    links: [
+      {
+        name: "Shophhp.vn",
+        action: "Check shop",
+        href: "https://shophhp.vn/",
+      },
+    ],
+  },
+  {
+    title: "Admin Group NRO khác",
+    links: [
+      {
+        name: "Sv2 Ngọc Rồng Online",
+        action: "Xem nhóm",
+        href: "https://www.facebook.com/groups/hhp15",
+      },
+      {
+        name: "Sv6 Ngọc Rồng Online - Mabu6sao TV",
+        action: "Xem nhóm",
+        href: "https://www.facebook.com/groups/237857763409327/",
+      },
+    ],
+  },
+];
+
+function ArrowIcon() {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      aria-hidden
+      className="h-3.5 w-3.5 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+    >
+      <path
+        d="M5 11 11 5M6 5h5v5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <main className="relative flex-1 overflow-hidden">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-amber-500/15 blur-3xl"
+      />
+
+      <div className="relative mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24">
+        {/* Hero */}
+        <section className="flex flex-col items-center text-center">
+          <div className="relative">
+            <div className="h-32 w-32 rounded-full bg-gradient-to-br from-amber-400 to-orange-600 p-1 shadow-[0_0_60px_-10px] shadow-amber-500/60">
+              <Image
+                src={catAvatar}
+                alt="Ảnh đại diện Nguyễn Thành Thức"
+                priority
+                className="h-full w-full rounded-full object-cover"
+              />
+            </div>
             <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+              src={youtubeAvatar}
+              alt="Logo NTT"
+              className="absolute -bottom-1 -left-3 h-12 w-12 rounded-full border-4 border-background bg-background"
             />
-            Deploy Now
+            <span className="absolute -bottom-1 -right-1 flex h-9 w-9 items-center justify-center rounded-full border-4 border-background bg-emerald-500 text-stone-950">
+              <svg viewBox="0 0 16 16" className="h-4 w-4" aria-hidden>
+                <path
+                  d="m3.5 8.5 3 3 6-7"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
+          </div>
+
+          <p className="mt-8 text-sm font-semibold uppercase tracking-[0.2em] text-amber-400">
+            Uy tín của chủ shop
+          </p>
+          <h1 className="mt-3 text-4xl font-extrabold tracking-tight sm:text-6xl">
+            Nguyễn Thành Thức
+          </h1>
+          <p className="mt-4 max-w-xl text-base leading-relaxed text-stone-400 sm:text-lg">
+            Chủ shop{" "}
+            <a
+              href="https://nickdaoquan.com"
+              className="font-semibold text-stone-100 underline decoration-amber-400/60 underline-offset-4 hover:decoration-amber-400"
+            >
+              NickDaoQuan.Com
+            </a>{" "}
+            và là admin của các nhóm, shop Ngọc Rồng Online bên dưới. Bạn có
+            thể bấm vào từng link để tự kiểm chứng.
+          </p>
+
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <a
+              href="https://www.facebook.com/nguyenthanhthuc.2k/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full bg-amber-400 px-6 py-3 text-sm font-bold text-stone-950 transition hover:bg-amber-300"
+            >
+              Nhắn Facebook
+            </a>
+            <a
+              href={`https://zalo.me/${PHONE}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-white/15 px-6 py-3 text-sm font-bold transition hover:border-amber-400/60 hover:text-amber-300"
+            >
+              Liên hệ Zalo
+            </a>
+          </div>
+        </section>
+
+        {/* Liên hệ */}
+        <section className="mt-20 grid gap-3 sm:grid-cols-3">
+          {contacts.map((c) => (
+            <div
+              key={c.label}
+              className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-5"
+            >
+              {c.avatar ? (
+                <Image
+                  src={c.avatar}
+                  alt={c.label}
+                  className="h-12 w-12 shrink-0 rounded-full object-cover"
+                />
+              ) : (
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#0068ff] text-xs font-bold text-white">
+                  Zalo
+                </span>
+              )}
+              <div className="min-w-0 flex-1">
+                <p className="text-xs font-medium uppercase tracking-wider text-stone-500">
+                  {c.label}
+                </p>
+                <div className="mt-1 flex items-center justify-between gap-2">
+                  <a
+                    href={c.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="truncate font-semibold text-stone-100 hover:text-amber-300"
+                  >
+                    {c.value}
+                  </a>
+                  {c.copy && <CopyButton value={c.copy} />}
+                </div>
+              </div>
+            </div>
+          ))}
+        </section>
+
+        {/* Vai trò admin */}
+        <section className="mt-20">
+          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+            Đang quản trị
+          </h2>
+          <p className="mt-2 text-stone-400">
+            Các cộng đồng và shop Ngọc Rồng Online do chủ shop làm admin.
+          </p>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {roles.map((role, i) => (
+              <article
+                key={role.title}
+                className="flex flex-col rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.05] to-transparent p-6"
+              >
+                <span className="text-sm font-bold text-amber-400">
+                  0{i + 1}
+                </span>
+                <h3 className="mt-2 text-lg font-bold">{role.title}</h3>
+                <ul className="mt-5 space-y-3">
+                  {role.links.map((l) => (
+                    <li key={l.href}>
+                      <a
+                        href={l.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group block rounded-xl border border-white/10 p-4 transition hover:border-amber-400/50 hover:bg-amber-400/5"
+                      >
+                        <p className="text-sm font-medium text-stone-200">
+                          {l.name}
+                        </p>
+                        <p className="mt-1 inline-flex items-center gap-1 text-sm font-semibold text-amber-400">
+                          {l.action}
+                          <ArrowIcon />
+                        </p>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <footer className="mt-24 border-t border-white/10 pt-8 text-center text-sm text-stone-500">
+          © 2026 Nguyễn Thành Thức ·{" "}
+          <a href="https://nickdaoquan.com" className="hover:text-amber-300">
+            NickDaoQuan.Com
           </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+        </footer>
+      </div>
+    </main>
   );
 }
