@@ -7,29 +7,39 @@ const PHONE = "0389946423";
 
 type Contact = {
   label: string;
-  value: string;
+  value?: string;
   href: string;
+  action: string;
   avatar?: StaticImageData;
   copy?: string;
 };
 
 const contacts: Contact[] = [
   {
-    label: "Facebook cá nhân",
-    value: "nguyenthanhthuc.2k",
+    label: "NickDaoQuan.Com",
+    value: "Shop Nick NRO",
+    href: "https://nickdaoquan.com",
+    action: "Ghé shop",
+    avatar: youtubeAvatar,
+  },
+  {
+    label: "Facebook",
+    value: "Facebook cá nhân",
     href: "https://www.facebook.com/nguyenthanhthuc.2k/",
+    action: "Nhắn tin",
     avatar: catAvatar,
   },
   {
     label: "Zalo / SĐT",
     value: "0389.946.423",
     href: `https://zalo.me/${PHONE}`,
+    action: "Nhắn tin",
     copy: PHONE,
   },
   {
     label: "Kênh YouTube",
-    value: "@shop_nickdaoquan_com",
     href: "https://www.youtube.com/@shop_nickdaoquan_com",
+    action: "Xem kênh",
     avatar: youtubeAvatar,
   },
 ];
@@ -147,61 +157,47 @@ export default function Home() {
             và là admin của các nhóm, shop Ngọc Rồng Online bên dưới. Bạn có
             thể bấm vào từng link để tự kiểm chứng.
           </p>
-
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <a
-              href="https://www.facebook.com/nguyenthanhthuc.2k/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full bg-amber-400 px-6 py-3 text-sm font-bold text-stone-950 transition hover:bg-amber-300"
-            >
-              Nhắn Facebook
-            </a>
-            <a
-              href={`https://zalo.me/${PHONE}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full border border-white/15 px-6 py-3 text-sm font-bold transition hover:border-amber-400/60 hover:text-amber-300"
-            >
-              Liên hệ Zalo
-            </a>
-          </div>
         </section>
 
         {/* Liên hệ */}
-        <section className="mt-20 grid gap-3 sm:grid-cols-3">
+        <section className="mt-16 grid gap-3 md:grid-cols-3">
           {contacts.map((c) => (
             <div
               key={c.label}
-              className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-5"
+              className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4"
             >
-              {c.avatar ? (
-                <Image
-                  src={c.avatar}
-                  alt={c.label}
-                  className="h-12 w-12 shrink-0 rounded-full object-cover"
-                />
-              ) : (
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#0068ff] text-xs font-bold text-white">
-                  Zalo
-                </span>
-              )}
-              <div className="min-w-0 flex-1">
-                <p className="text-xs font-medium uppercase tracking-wider text-stone-500">
-                  {c.label}
-                </p>
-                <div className="mt-1 flex items-center justify-between gap-2">
-                  <a
-                    href={c.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="truncate font-semibold text-stone-100 hover:text-amber-300"
-                  >
-                    {c.value}
-                  </a>
-                  {c.copy && <CopyButton value={c.copy} />}
+              <div className="flex min-w-0 flex-1 items-center gap-3">
+                {c.avatar ? (
+                  <Image
+                    src={c.avatar}
+                    alt={c.label}
+                    className="h-12 w-12 shrink-0 rounded-full object-cover"
+                  />
+                ) : (
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#0068ff] text-xs font-bold text-white">
+                    Zalo
+                  </span>
+                )}
+                <div className="min-w-0 flex-1">
+                  <p className="font-semibold text-stone-100">{c.label}</p>
+                  {c.value && (
+                    <div className="mt-0.5 flex items-center gap-2">
+                      <span className="truncate text-sm text-stone-400">
+                        {c.value}
+                      </span>
+                      {c.copy && <CopyButton value={c.copy} />}
+                    </div>
+                  )}
                 </div>
               </div>
+              <a
+                href={c.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 rounded-full bg-amber-400 px-3.5 py-1.5 text-xs font-bold whitespace-nowrap text-stone-950 transition hover:bg-amber-300"
+              >
+                {c.action}
+              </a>
             </div>
           ))}
         </section>
@@ -209,7 +205,7 @@ export default function Home() {
         {/* Vai trò admin */}
         <section className="mt-20">
           <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
-            Đang quản trị
+            Admin tại các nhóm sau
           </h2>
           <p className="mt-2 text-stone-400">
             Các cộng đồng và shop Ngọc Rồng Online do chủ shop làm admin.
